@@ -1,0 +1,25 @@
+version: '3.2'
+services:
+  datapipeline:
+    env_file:
+      - ./.env
+    image: docker.elastic.co/logstash/logstash:7.9.1
+    environment:
+      - config.reload.automatic=true
+      - xpack.monitoring.enabled=false
+      - xpack.monitoring.elasticsearch.hosts=""
+    container_name: datapipeline
+    hostname: datapipeline
+    networks:
+      siemtesting:
+        aliases:
+          - datapipeline
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+      - "9200:9200"
+    volumes:
+     - $PWD/datapipeline/data:/usr/share/logstash/data/
+     - $PWD/datapipeline/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+     - $PWD/datapipeline/pipeline/:/usr/share/logstash/pipeline/
+ 
