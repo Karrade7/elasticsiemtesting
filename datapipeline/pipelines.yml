@@ -2,5 +2,5 @@
 # For more information on multiple pipelines, see the documentation:
 #   https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html
 
-- pipeline.id: datapipeline-${CUSTOMERNAME}
+- pipeline.id: datapipeline
   path.config: "/usr/share/logstash/pipeline"
